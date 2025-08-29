@@ -1,0 +1,39 @@
+  projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZSP_HEADER_C alias header
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+  use action Activate;
+  use action SetStatus;
+  use action SetDelivery;
+
+  use association _item { create; with draft;}
+}
+
+define behavior for ZSP_ITEM_C alias item
+{
+  use update;
+  use delete;
+
+  use association _header{ with draft;}
+  use association _schedule { create; with draft;}
+}
+
+define behavior for ZSP_SCHEDULE_C alias schedule
+{
+  use update;
+  use delete;
+
+  use association _HEADER{ with draft;}
+  use association _ITEM{ with draft;}
+}

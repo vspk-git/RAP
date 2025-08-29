@@ -1,0 +1,78 @@
+@Metadata.layer: #CORE
+annotate entity ZSP_SCHEDULE_C
+    with 
+{
+   @UI.facet: [{
+      id: 'Schedule',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Schedhule Lines',
+      position: 10
+    }]
+   
+//   @UI: {
+//   lineItem: [{ position: 10, importance: #HIGH }],
+//   identification: [{ position: 10, importance: #HIGH }]
+//   }
+//   @EndUserText.label: 'SO'
+  @UI.hidden: true 
+    So;
+//    
+//   @UI: {
+//   lineItem: [{ position: 20, importance: #HIGH }],
+//   identification: [{ position: 20, importance: #HIGH }]
+//   }
+//   @EndUserText.label: 'Item'
+  @UI.hidden: true 
+    Item;
+    
+   @UI: {
+   lineItem: [{ position: 30, importance: #HIGH }],
+   identification: [{ position: 30, importance: #HIGH }]
+   }
+   @EndUserText.label: 'slno'
+    slno;
+    
+   @UI: {
+   lineItem: [{ position: 40, importance: #HIGH }],
+   identification: [{ position: 40, importance: #HIGH }]
+   }
+   @EndUserText.label: 'ScheduleCat'
+    ScheduleCat;
+    
+   @UI: {
+   lineItem: [{ position: 50, importance: #HIGH }],
+   identification: [{ position: 50, importance: #HIGH }]
+   }
+   @EndUserText.label: 'DelivDate'
+    DelivDate;
+    
+   @UI: {
+   lineItem: [{ position: 60, importance: #HIGH }],
+   identification: [{ position: 60, importance: #HIGH }]
+   }
+   @EndUserText.label: 'OrderQty'
+    OrderQty;
+    
+   @UI: {
+   lineItem: [{ position: 70, importance: #HIGH }],
+   identification: [{ position: 70, importance: #HIGH }]
+   }
+   @EndUserText.label: 'ConfirmedQty'
+    ConfirmedQty;  
+    
+//    SaleUnit;
+
+   @UI: {
+   lineItem: [{ position: 80, importance: #HIGH }],
+   identification: [{ position: 80, importance: #HIGH }]
+   }
+   @EndUserText.label: 'LocalLastChangedAt'
+    LocalLastChangedAt;
+    
+    
+    /* Associations */
+//    _HEADER;
+//    _ITEM;element_name;
+    
+}

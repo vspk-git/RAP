@@ -1,0 +1,114 @@
+managed implementation in class zbp_zsp_header_i unique;
+strict ( 2 );
+
+with draft;
+define behavior for ZSP_HEADER_I alias salesheader
+draft table ZSP_HEADER_D
+persistent table zsp_sales_header
+lock master
+total etag LastChangedAt
+authorization master ( global,instance )
+etag master LocalLastChangedAt
+{
+//  create ( authorization : global );
+  create;
+  update;
+  delete;
+  field ( numbering : managed, readonly ) So;
+  field ( readonly ) customer;
+//  field ( readonly ) So;
+  association _item { create; with draft; }
+
+draft action Edit;
+draft action Discard;
+draft action Resume;
+draft action Activate optimized;
+draft determine action Prepare;
+
+
+//determination setheader on save { create; }
+determination setcustomer on save { create; }
+
+//Actions
+action SetDelivery result [1] $self;
+action SetStatus result [1] $self;
+
+  mapping for zsp_sales_header
+  {
+   so                    = So;
+   customer              = Customer;
+   sdtype                = Sdtype;
+   salesorg              = Salesorg;
+   distributionchannel   = Distributionchannel;
+   division              = Division;
+   Status                = Status;
+   LocalCreatedBy        = local_created_by;
+   LocalCreatedAt        = local_created_at;
+   LocalLastChangedBy    = local_last_changed_by;
+   LocalLastChangedAt    = local_last_changed_at;
+   LastChangedAt         = last_changed_at ;
+
+  }
+}
+
+define behavior for ZSP_ITEM_I alias salesitem
+persistent table zsp_sales_item
+draft table ZSP_ITEM_D
+lock dependent by _header
+authorization dependent by _header
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) So;
+  field ( numbering : managed, readonly) Item;
+  association _header { with draft; }
+  association _schedule { create; with draft; }
+
+
+  mapping for zsp_sales_item
+  {
+   so                    = so;
+   item                  = item;
+   material              = material;
+   materialgroup         = materialgroup;
+   plant                 = plant;
+   sloc                  = sloc;
+   netprice              = netprice;
+   CurrencyCode          = currency_code;
+   quantity              = quantity;
+   salesunit             = salesunit;
+   LocalLastChangedAt    = local_last_changed_at;
+  }
+}
+
+
+
+define behavior for ZSP_SCHEDULE_I alias schedulelines
+persistent table zsp_schedule
+draft table ZSP_SCHEDULE_D
+lock dependent by _header
+authorization dependent by _header
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) So, Item;
+  field ( numbering : managed, readonly) slno;
+  association _header { with draft; }
+  association _item { with draft; }
+
+  mapping for zsp_schedule
+  {
+    So                 = so;
+    Item               = item;
+    slno               = slno;
+    ScheduleCat        = schedule_cat;
+    DelivDate          = deliv_date;
+    OrderQty           = order_qty;
+    ConfirmedQty       = confirmed_qty;
+    SaleUnit           = sale_unit;
+    LocalLastChangedAt = local_last_changed_at;
+
+  }
+}

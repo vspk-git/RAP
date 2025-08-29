@@ -1,0 +1,6 @@
+@EndUserText.label: 'Header service defination'
+define service ZSP_HEADER_SD {
+  expose ZSP_HEADER_C;
+  expose ZSP_ITEM_C;
+  expose ZSP_SCHEDULE_C;
+}
