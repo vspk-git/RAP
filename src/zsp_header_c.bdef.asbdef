@@ -16,6 +16,8 @@ use etag
   use action Activate;
   use action SetStatus;
   use action SetDelivery;
+  use action SetDownload;
+  use action SetUpload;
 
   use association _item { create; with draft;}
 }

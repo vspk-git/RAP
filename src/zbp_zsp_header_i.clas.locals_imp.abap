@@ -15,6 +15,11 @@ CLASS lhc_salesheader DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS setcustomer FOR DETERMINE ON SAVE
       IMPORTING keys FOR salesheader~setcustomer.
+    METHODS setdownload FOR MODIFY
+      IMPORTING keys FOR ACTION salesheader~setdownload RESULT result.
+
+    METHODS setupload FOR MODIFY
+      IMPORTING keys FOR ACTION salesheader~setupload RESULT result.
 
 ENDCLASS.
 
@@ -86,6 +91,12 @@ ENDMETHOD.
                            ( %tky = ls_cust_id-%tky
                              Customer = lv_cust_max + lv_index
                               ) ).
+  ENDMETHOD.
+
+  METHOD SetDownload.
+  ENDMETHOD.
+
+  METHOD SetUpload.
   ENDMETHOD.
 
 ENDCLASS.

@@ -26,12 +26,14 @@ draft action Activate optimized;
 draft determine action Prepare;
 
 
-//determination setheader on save { create; }
+//Determinations
 determination setcustomer on save { create; }
 
 //Actions
 action SetDelivery result [1] $self;
 action SetStatus result [1] $self;
+action SetDownload result [1] $self;
+action SetUpload result [1] $self;
 
   mapping for zsp_sales_header
   {
